@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ServerOpsaetning.Model;
+using ServerOpsaetning.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,12 @@ namespace ServerOpsaetning.View
     /// </summary>
     public partial class ServerDetailsView : Window
     {
-        public ServerDetailsView()
+        ServerDetailsViewModel model;
+
+        public ServerDetailsView(Server server)
         {
+            model = new ServerDetailsViewModel(server);
+            DataContext = model;
             InitializeComponent();
         }
     }

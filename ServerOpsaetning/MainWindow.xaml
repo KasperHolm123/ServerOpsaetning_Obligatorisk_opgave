@@ -47,7 +47,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="More info" HorizontalAlignment="Left" Margin="249,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10">
+        <Button Content="More info" HorizontalAlignment="Left" Margin="249,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
