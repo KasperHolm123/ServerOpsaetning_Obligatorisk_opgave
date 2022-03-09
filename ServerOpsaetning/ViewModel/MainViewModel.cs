@@ -15,6 +15,7 @@ namespace ServerOpsaetning.ViewModel
             ConnectToServer("192.168.9.179", "kasper", "kasper123");
         }
 
+        // Metode for at teste om man kan connecte til sin server.
         private void ConnectToServer(string connection, string username, string password)
         {
             var connectionInfo = new ConnectionInfo("192.168.9.179", "kasper",
