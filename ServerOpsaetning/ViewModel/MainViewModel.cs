@@ -21,7 +21,14 @@ namespace ServerOpsaetning.ViewModel
                                                     new PasswordAuthenticationMethod("kasper", "kasper123"));
             using (var client = new SshClient(connection, username, password))
             {
-                client.Connect();
+                try
+                {
+                    client.Connect();
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
     }

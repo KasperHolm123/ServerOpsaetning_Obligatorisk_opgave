@@ -8,7 +8,7 @@
         Title="Controlpanel" Height="450" Width="800">
     <Grid>
         <!-- Server info template -->
-        <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFB8B8B8" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
         <Label Content="Server" HorizontalAlignment="Left" Margin="198,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,130,0,0" VerticalAlignment="Top"/>
