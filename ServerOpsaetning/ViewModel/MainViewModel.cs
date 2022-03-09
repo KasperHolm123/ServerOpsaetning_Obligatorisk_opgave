@@ -12,14 +12,14 @@ namespace ServerOpsaetning.ViewModel
         
         public MainViewModel()
         {
-            ConnectToServer();
+            ConnectToServer("192.168.9.179", "kasper", "kasper123");
         }
 
-        private void ConnectToServer()
+        private void ConnectToServer(string connection, string username, string password)
         {
             var connectionInfo = new ConnectionInfo("192.168.9.179", "kasper",
                                                     new PasswordAuthenticationMethod("kasper", "kasper123"));
-            using (var client = new SshClient("192.168.1.179", "kasper", "kasper123"))
+            using (var client = new SshClient(connection, username, password))
             {
                 client.Connect();
             }
