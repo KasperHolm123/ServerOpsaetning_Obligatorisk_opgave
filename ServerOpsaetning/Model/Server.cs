@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Renci.SshNet;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +10,28 @@ namespace ServerOpsaetning.Model
 {
     class Server
     {
-        public int ServerIP { get; set; }
+        public string ServerIP { get; set; }
         public bool IsServerOn { get; set; }
-        public string ServerUsername { get; set; }
-        public string ServerPassword { get; set; }
 
-        public Server(int IP, bool IsOn, string username, string password)
+        public Server(string IP, string username, string password)
         {
-            ServerIP = IP;
-            IsServerOn = IsOn;
-            ServerUsername = username;
-            ServerPassword = password;
+            SshClient client = new SshClient(IP, username, password);
+            try
+            {
+                client.Connect();
+                ServerIP = IP;
+                Trace.WriteLine("Connection attained.");
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("Connection timed out.");
+            }
+            IsServerOn = client.IsConnected;
+        }
+
+        private void CreateConnection(string IP, string username, string password)
+        {
+            
         }
     }
 }

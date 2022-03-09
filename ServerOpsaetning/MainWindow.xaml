@@ -7,13 +7,39 @@
         mc:Ignorable="d"
         Title="Controlpanel" Height="450" Width="800">
     <Grid>
-        <!-- Server info template -->
+        <!-- Kaspers server template -->
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
-        <Label Content="Server" HorizontalAlignment="Left" Margin="198,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="Kasper - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,130,0,0" VerticalAlignment="Top"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="282,130,0,0" VerticalAlignment="Top"/>
-        <Ellipse HorizontalAlignment="Left" Height="16" Margin="293,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" Fill="Red" StrokeThickness="0"/>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Content" Value="0"/>
+                    <Setter Property="Margin" Value="293,130,0,0"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=server1.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Content" Value="{Binding Path=server1.ServerIP}"/>
+                            <Setter Property="Margin" Value="235,130,0,0"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <Ellipse HorizontalAlignment="Left" Height="16" Margin="293,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
+            <Ellipse.Style>
+                <Style TargetType="Ellipse">
+                    <Setter Property="Fill" Value="Red"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=server1.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Fill" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+
+
         <Button Content="Reboot" HorizontalAlignment="Left" Margin="131,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10">
             <Button.Resources>
                 <Style TargetType="Border">
