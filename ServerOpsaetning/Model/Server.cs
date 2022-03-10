@@ -21,8 +21,8 @@ namespace ServerOpsaetning.Model
         // Properties used in ServerDetailsView.
         public string Uptime { get; set; }
         public string DiskSpace { get; set; }
-        public string RAMSpace { get; set; }
-        public string CPUUsage { get; set; }
+        public string MemoryUsage { get; set; }
+        public string CpuUsage { get; set; }
 
 
         public Server(string IP, int port, string username, string password)

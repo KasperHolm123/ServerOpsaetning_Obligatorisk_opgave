@@ -34,7 +34,12 @@ namespace ServerOpsaetning.ViewModel
                 try
                 {
                     var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$6,""minutes""}'");
+                    var MemoryUsageCommand = server.client.RunCommand(@"free -m | grep ""Mem:"" | awk '{print $3,""MB used of"",$2,""MB""}'");
+                    var CpuUsageCommand = server.client.RunCommand(@"top -b -n1 | grep ""Cpu(s)"" | awk '{print $2 + $4, ""%""}'");
+
                     server.Uptime = string.Format(UptimeCommand.Result);
+                    server.MemoryUsage = string.Format(MemoryUsageCommand.Result);
+                    server.CpuUsage = string.Format(CpuUsageCommand.Result);
                 }
                 catch (Exception ex)
                 {

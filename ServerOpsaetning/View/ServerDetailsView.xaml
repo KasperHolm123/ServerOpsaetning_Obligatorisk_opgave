@@ -14,10 +14,10 @@
         <Label Content="CPU:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Processes:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <Label Content="{Binding server.Uptime}" Margin="385,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="{Binding server.Uptime}" Margin="410,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label Content="Label" Margin="440,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Label" Margin="440,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Label" Margin="440,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="{Binding server.MemoryUsage}" Margin="340,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="{Binding server.CpuUsage}" Margin="440,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
         <DataGrid Height="207" VerticalAlignment="Top" HorizontalAlignment="Center" Width="480" Margin="0,217,0,0">
             <DataGrid.Columns>
