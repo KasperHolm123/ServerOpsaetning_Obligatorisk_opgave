@@ -14,7 +14,7 @@
         <Label Content="CPU:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Processes:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <Label Content="{Binding server.Uptime}" Margin="443,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="{Binding server.Uptime}" Margin="385,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label Content="Label" Margin="440,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="Label" Margin="440,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="Label" Margin="440,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />

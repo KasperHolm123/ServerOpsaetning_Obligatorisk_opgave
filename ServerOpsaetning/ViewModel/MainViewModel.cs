@@ -22,23 +22,24 @@ namespace ServerOpsaetning.ViewModel
         
         public MainViewModel()
         {
-            server1 = new Server("192.168.1.179", "kasper", "kasper123"); // Bare skift værdierne så du kan se om din server virker.
-            MoreInfoCmd = new RelayCommand(p => ViewServerDetails(server1));
+            server1 = new Server("192.168.1.179", 7777 , "kasper", "kasper123"); // Bare skift værdierne så du kan se om din server virker.
+            MoreInfoCmd = new RelayCommand(p => ViewMoreInfo());
             Trace.WriteLine(server1.IsServerOn);
             serversCollection = new ObservableCollection<Server>();
         }
 
         // Metode for at teste om man kan connecte til sin server.
-        private void ConnectToServer(string connection, string username, string password)
+        private void ViewMoreInfo()
         {
-            //Server server = new Server(true, "192.168.1.179", "kasper", "kasper123");
-            //serversCollection.Add(server);
+            Thread DetailsThread = new Thread(() => ViewServerDetails(server1));
+            DetailsThread.SetApartmentState(ApartmentState.STA);
+            DetailsThread.Start();
+            
         }
 
         private void ViewServerDetails(Server server)
         {
             ServerDetailsView sdv = new ServerDetailsView(server);
-            
             sdv.ShowDialog();
         }
     }

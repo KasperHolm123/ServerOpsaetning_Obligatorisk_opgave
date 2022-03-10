@@ -15,6 +15,7 @@ namespace ServerOpsaetning.Model
         
         // Properties used in MainWindow.
         public string ServerIP { get; set; }
+        public int ServerPort { get; set; }
         public bool IsServerOn { get; set; }
 
         // Properties used in ServerDetailsView.
@@ -24,9 +25,9 @@ namespace ServerOpsaetning.Model
         public string CPUUsage { get; set; }
 
 
-        public Server(string IP, string username, string password)
+        public Server(string IP, int port, string username, string password)
         {
-            client = new SshClient(IP, username, password);
+            client = new SshClient(IP, port, username, password);
             try
             {
                 client.Connect();
