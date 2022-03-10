@@ -7,8 +7,10 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ServerOpsaetning.ViewModel
 {
@@ -17,6 +19,7 @@ namespace ServerOpsaetning.ViewModel
         public ObservableCollection<Server> serversCollection { get; set; }
         public RelayCommand MoreInfoCmd { get; set; }
         public Server server1 { get; set; }
+        
         public MainViewModel()
         {
             server1 = new Server("192.168.1.179", "kasper", "kasper123"); // Bare skift værdierne så du kan se om din server virker.
@@ -30,12 +33,12 @@ namespace ServerOpsaetning.ViewModel
         {
             //Server server = new Server(true, "192.168.1.179", "kasper", "kasper123");
             //serversCollection.Add(server);
-
         }
 
         private void ViewServerDetails(Server server)
         {
             ServerDetailsView sdv = new ServerDetailsView(server);
+            
             sdv.ShowDialog();
         }
     }

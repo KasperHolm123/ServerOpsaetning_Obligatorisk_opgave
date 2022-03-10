@@ -1,8 +1,10 @@
 ﻿using ServerOpsaetning.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ServerOpsaetning.ViewModel
@@ -14,12 +16,20 @@ namespace ServerOpsaetning.ViewModel
         {
             this.server = server;
             GetServerInformation(server);
+            //Task task1 = Task.Factory.StartNew(() => { GetServerInformation(server); });
         }
 
         private void GetServerInformation(Server server)
         {
-            var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$6}'");
-            server.Uptime = string.Format("{0} minutes", UptimeCommand.Result);
+            try
+            {
+                var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$6}'");
+                server.Uptime = string.Format("{0} minutes", UptimeCommand.Result);
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+            }
         }
     }
 }
