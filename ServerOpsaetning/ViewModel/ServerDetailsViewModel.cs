@@ -19,12 +19,10 @@ namespace ServerOpsaetning.ViewModel
         public ServerDetailsViewModel(Server server)
         {
             this.server = server;
-            //GetServerInformation(server);
-            tempMethod();
+            CreateGetInformationTask();
         }
 
-
-        private void tempMethod()
+        private void CreateGetInformationTask()
         {
             Task InfoTask = Task.Factory.StartNew(() => GetServerInformation(server));
         }
@@ -35,7 +33,7 @@ namespace ServerOpsaetning.ViewModel
             {
                 try
                 {
-                    var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$8,"":""$7, ""minutes""}'");
+                    var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$6,""minutes""}'");
                     server.Uptime = string.Format(UptimeCommand.Result);
                 }
                 catch (Exception ex)
@@ -43,6 +41,7 @@ namespace ServerOpsaetning.ViewModel
                     Trace.WriteLine(ex.Message);
                 }
                 OnPropertyChanged();
+                Thread.Sleep(5000);
             }
         }
 

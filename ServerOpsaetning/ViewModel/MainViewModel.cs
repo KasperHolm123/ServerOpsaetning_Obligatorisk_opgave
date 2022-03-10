@@ -16,25 +16,28 @@ namespace ServerOpsaetning.ViewModel
 {
     class MainViewModel
     {
-        public ObservableCollection<Server> serversCollection { get; set; }
+        public Server KasperServer { get; set; }
+        public Server JonasServer { get; set; }
+        public Server JohanServer { get; set; }
+        public Server CustomServer { get; set; }
+
         public RelayCommand MoreInfoCmd { get; set; }
-        public Server server1 { get; set; }
         
         public MainViewModel()
         {
-            server1 = new Server("192.168.1.179", 7777 , "kasper", "kasper123"); // Bare skift værdierne så du kan se om din server virker.
-            MoreInfoCmd = new RelayCommand(p => ViewMoreInfo());
-            Trace.WriteLine(server1.IsServerOn);
-            serversCollection = new ObservableCollection<Server>();
+            KasperServer = new Server("192.168.1.179", 7777, "kasper", "kasper123");
+            JonasServer = new Server("temp", 7777, "temp", "temp"); // Værdier skal ændres
+            JohanServer = new Server("temp", 7777, "temp", "temp"); // Værdier skal ændres
+            MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
         }
 
         // Metode for at teste om man kan connecte til sin server.
-        private void ViewMoreInfo()
+        private void ViewMoreInfo(Server server)
         {
-            Thread DetailsThread = new Thread(() => ViewServerDetails(server1));
+            Thread DetailsThread = new Thread(() => ViewServerDetails(server));
             DetailsThread.SetApartmentState(ApartmentState.STA);
             DetailsThread.Start();
-            
+
         }
 
         private void ViewServerDetails(Server server)
