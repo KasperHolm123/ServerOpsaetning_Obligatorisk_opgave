@@ -1,6 +1,7 @@
 ﻿using Renci.SshNet;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,35 @@ using System.Threading.Tasks;
 
 namespace ServerOpsaetning.Model
 {
-    public class Server
+    public class Server : INotifyPropertyChanged
     {
         // Server client
         public SshClient client { get; set; }
         
         // Properties used in MainWindow.
         public string ServerIP { get; set; }
-        public int ServerPort { get; set; }
         public bool IsServerOn { get; set; }
-
+        private string uptime;
+        private string diskspace;
         // Properties used in ServerDetailsView.
-        public string Uptime { get; set; }
-        public string DiskSpace { get; set; }
+        public string Uptime
+        {
+            get { return uptime; }
+            set
+            {
+                uptime = value;
+                OnPropertyChanged("Uptime");
+            }
+        }
+        public string DiskSpace
+        {
+            get { return diskspace; }
+            set
+            {
+                diskspace = value;
+                OnPropertyChanged("DiskSpace");
+            }
+        }
         public string RAMSpace { get; set; }
         public string CPUUsage { get; set; }
 
@@ -42,5 +59,10 @@ namespace ServerOpsaetning.Model
             }
             IsServerOn = client.IsConnected;
         }
+        private void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
