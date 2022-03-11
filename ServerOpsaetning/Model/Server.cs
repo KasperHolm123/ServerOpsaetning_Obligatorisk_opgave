@@ -20,24 +20,9 @@ namespace ServerOpsaetning.Model
         private string uptime;
         private string diskspace;
         // Properties used in ServerDetailsView.
-        public string Uptime
-        {
-            get { return uptime; }
-            set
-            {
-                uptime = value;
-                OnPropertyChanged("Uptime");
-            }
-        }
-        public string DiskSpace
-        {
-            get { return diskspace; }
-            set
-            {
-                diskspace = value;
-                OnPropertyChanged("DiskSpace");
-            }
-        }
+        
+        public string Uptime { get; set; }
+        public string DiskSpace { get; set; }
         public string RAMSpace { get; set; }
         public string CPUUsage { get; set; }
 
