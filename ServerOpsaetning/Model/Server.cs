@@ -25,15 +25,13 @@ namespace ServerOpsaetning.Model
         public string CpuUsage { get; set; }
 
 
-        public Server(string IP, int port, string username, string password)
+        public Server(string IP, string username, string password, int port = 22)
         {
             client = new SshClient(IP, port, username, password);
             try
             {
                 client.Connect();
-                var command1 = client.RunCommand("uptime");
-                Trace.WriteLine(command1.Result);
-                Trace.WriteLine("Connection attained.");
+                Trace.WriteLine("Connection established.");
                 ServerIP = IP; // Only get the server IP if the connection has been established.
             }
             catch (Exception ex)

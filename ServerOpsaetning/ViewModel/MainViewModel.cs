@@ -25,9 +25,9 @@ namespace ServerOpsaetning.ViewModel
         
         public MainViewModel()
         {
-            KasperServer = new Server("192.168.1.179", 7777, "kasper", "kasper123");
-            //JonasServer = new Server("temp", 7777, "temp", "temp"); // Værdier skal ændres
-            //JohanServer = new Server("temp", 7777, "temp", "temp"); // Værdier skal ændres
+            KasperServer = new Server("192.168.1.179", "kasper", "kasper123", 7777);
+            JonasServer = new Server("78.141.237.38", "root", "6rQ,%zZ!sy[UCu,r"); // Værdier skal ændres
+            //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
         }
 
