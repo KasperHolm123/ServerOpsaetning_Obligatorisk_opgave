@@ -38,8 +38,8 @@ namespace ServerOpsaetning.ViewModel
                     var CpuUsageCommand = server.client.RunCommand(@"top -b -n1 | grep ""Cpu(s)"" | awk '{print $2 + $4, ""%""}'");
 
                     server.Uptime = string.Format(UptimeCommand.Result);
-                    server.MemoryUsage = string.Format(MemoryUsageCommand.Result);
-                    server.CpuUsage = string.Format(CpuUsageCommand.Result);
+                    server.DiskSpace = string.Format(MemoryUsageCommand.Result);
+                    server.CPUUsage = string.Format(CpuUsageCommand.Result);
                 }
                 catch (Exception ex)
                 {

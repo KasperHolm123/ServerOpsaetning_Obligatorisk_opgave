@@ -16,9 +16,18 @@ namespace ServerOpsaetning.Model
         
         // Properties used in MainWindow.
         public string ServerIP { get; set; }
-        public bool IsServerOn { get; set; }
+        public bool IsServerOn
+        {
+            get { return isServerOn; }
+            set
+            {
+                isServerOn = value;
+                OnPropertyChanged("IsServerOn");
+            }
+        }
         private string uptime;
         private string diskspace;
+        private bool isServerOn;
         // Properties used in ServerDetailsView.
         
         public string Uptime { get; set; }
@@ -43,6 +52,27 @@ namespace ServerOpsaetning.Model
                 Trace.WriteLine("Connection timed out.");
             }
             IsServerOn = client.IsConnected;
+        }
+        public async Task GetServerState() //Try connect
+        {
+            if (!IsServerOn)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        client.Connect();
+                        var command1 = client.RunCommand("uptime");
+                        Trace.WriteLine(command1.Result);
+                        Trace.WriteLine("Connection attained.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine("Connection timed out.");
+                    }
+                    IsServerOn = client.IsConnected;
+                });
+            }
         }
         private void OnPropertyChanged(string property)
         {

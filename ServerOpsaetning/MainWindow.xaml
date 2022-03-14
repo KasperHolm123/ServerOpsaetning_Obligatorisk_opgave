@@ -12,11 +12,11 @@
         <Label Content="Kasper - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,130,0,0" VerticalAlignment="Top"/>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="292,130,0,0">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Content" Value="0"/>
-                    <Setter Property="Margin" Value="293,130,0,0"/>
+                    <Setter Property="Margin" Value="29,130,0,0"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding KasperServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Content" Value="{Binding Path=KasperServer.ServerIP}"/>
@@ -55,7 +55,59 @@
             </Button.Resources>
         </Button>
         <!-- Kaspers server -->
+        <Rectangle HorizontalAlignment="Left" Height="110" Margin="480,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
+        <Label Content="Custom - Server" HorizontalAlignment="Left" Margin="530,250,0,0" VerticalAlignment="Top"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="480,280,0,0" VerticalAlignment="Top"/>
+        <Label Content="IP:" HorizontalAlignment="Left" Margin="480,310,0,0" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="655,307,0,0">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Content" Value="0"/>
+                    <Setter Property="Margin" Value="29,130,0,0"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Content" Value="{Binding Path=CustomServer.ServerIP}"/>
+                            <Setter Property="Margin" Value="235,130,0,0"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <Ellipse HorizontalAlignment="Left" Height="16" Margin="655,280,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
+            <Ellipse.Style>
+                <Style TargetType="Ellipse">
+                    <Setter Property="Fill" Value="Red"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Fill" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
 
+
+        <Button Content="Reboot" HorizontalAlignment="Left" Margin="495,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="More info" HorizontalAlignment="Left" Margin="610,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding KasperServer}">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="570,330,0,0" Height="25" Width="30" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding EditCmd}" CommandParameter="">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <!-- Jonas' server -->
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="484,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
         <Label Content="Jonas - Server" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
