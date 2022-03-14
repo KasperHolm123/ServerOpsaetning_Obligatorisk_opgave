@@ -7,15 +7,21 @@
         mc:Ignorable="d"
         Title="Custom Server" Height="220" Width="300">
     <Grid Background="#FFAAAAAA">
-        <Label Content="Connecto to custom server" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Connect to custom server" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Server IP:" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Port:" HorizontalAlignment="Left" Margin="40,81,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="40,112,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="40,143,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Margin="170,54,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="170,85,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="170,116,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="170,147,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
+        <TextBox HorizontalAlignment="Left" Margin="170,54,0,0" Text="{Binding Path= Host, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="170,85,0,0" Text="{Binding Path= Port, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="170,116,0,0" Text="{Binding Path= Username, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="170,147,0,0" Text="{Binding Path= Password, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Edit" HorizontalAlignment="Center" Margin="0,170,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding Path=EditCmd}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

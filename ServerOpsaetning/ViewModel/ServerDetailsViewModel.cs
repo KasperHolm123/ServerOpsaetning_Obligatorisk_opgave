@@ -39,8 +39,8 @@ namespace ServerOpsaetning.ViewModel
                     var DiskUsageCommand = server.client.RunCommand(@"df -hx squashfs --total | grep ""total"" | awk '{print $3,""used of"",$2}'");
                     server.DiskSpace = string.Format(DiskUsageCommand.Result);
                     server.Uptime = string.Format(UptimeCommand.Result);
-                    server.MemoryUsage = string.Format(MemoryUsageCommand.Result);
-                    server.CpuUsage = string.Format(CpuUsageCommand.Result);
+                    server.DiskSpace = string.Format(MemoryUsageCommand.Result);
+                    server.CPUUsage = string.Format(CpuUsageCommand.Result);
                 }
                 catch (Exception ex)
                 {

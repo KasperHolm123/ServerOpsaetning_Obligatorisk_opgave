@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ServerOpsaetning.Model;
+using ServerOpsaetning.ViewModel;
 
 namespace ServerOpsaetning.View
 {
@@ -19,9 +21,14 @@ namespace ServerOpsaetning.View
     /// </summary>
     public partial class CustomServerView : Window
     {
-        public CustomServerView()
+        EditViewModel model;
+        public CustomServerView(ServerCreated method)
         {
+            model = new EditViewModel(method);
+            model.CloseRequest += (s, e) => this.Close();
+            DataContext = model;
             InitializeComponent();
         }
     }
+
 }
