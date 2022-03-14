@@ -15,14 +15,14 @@ namespace ServerOpsaetning.ViewModel
         private Server _server;
         public StatusViewModel()
         {
-            _server = new Server("172.16.0.154", 7373, "jona211x", "cfe62qdf");
+            _server = new Server("172.16.0.154", "jona211x", "cfe62qdf", 7373);
             GetStatus();
         }
         private async void GetStatus()
         {
             await Task.Factory.StartNew(() =>
             {
-                SshCommand cmd = _server.Client.CreateCommand("df-h");
+                SshCommand cmd = _server.client.CreateCommand("df-h");
                 IAsyncResult result = cmd.BeginExecute();
                 result.AsyncWaitHandle.WaitOne();
                 var returnVal = cmd.EndExecute(result);

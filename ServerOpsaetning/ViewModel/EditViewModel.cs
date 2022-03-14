@@ -31,7 +31,7 @@ namespace ServerOpsaetning.ViewModel
             {
                 try
                 {
-                    _server = new Server(Host, Port, Username, Password);
+                    _server = new Server(Host, Password, Username, Port);
                     _server.client.Connect();
                     var stream = _server.client.CreateShellStream("tty1", 0, 0, 0, 0, 1024);
                     stream.WriteLine(Username);

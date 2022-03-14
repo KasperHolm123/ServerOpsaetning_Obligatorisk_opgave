@@ -19,6 +19,7 @@ namespace ServerOpsaetning.ViewModel
     public class MainViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public Server KasperServer { get; set; }
         public Server JonasServer { get; set; }
         public Server JohanServer { get; set; }
@@ -41,15 +42,13 @@ namespace ServerOpsaetning.ViewModel
             KasperServer = new Server("192.168.1.179", "kasper", "kasper123", 7777);
             JonasServer = new Server("78.141.237.38", "root", "6rQ,%zZ!sy[UCu,r"); // Værdier skal ændres
             //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
-            JonasServer = new Server("172.16.0.154", 7373, "jona211x", "cfe62qdf");
-            //KasperServer = new Server("192.168.1.179", 7777, "kasper", "kasper123"); // Værdier skal ændres
-            //JohanServer = new Server("temp", 7777, "temp", "temp"); // Værdier skal ændres
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
             EditCmd = new RelayCommand(p => EditInfo());
             timer = new System.Timers.Timer(5000);
             timer.Elapsed += ElapsedEventHandler;
             timer.Start();
         }
+
         private void EditInfo()
         {
             Thread tr = new Thread(() => EditServer());
@@ -62,10 +61,12 @@ namespace ServerOpsaetning.ViewModel
             CustomServerView csv = new CustomServerView(AddServer);
             csv.ShowDialog();
         }
+
         private void AddServer(Server server)
         {
             CustomServer = server;
         }
+
         // Metode for at teste om man kan connecte til sin server.
         private void ViewMoreInfo(Server server)
         {
@@ -74,11 +75,13 @@ namespace ServerOpsaetning.ViewModel
             DetailsThread.Start();
 
         }
+
         private void ViewServerDetails(Server server)
         {
             ServerDetailsView sdv = new ServerDetailsView(server);
             sdv.ShowDialog();
         }
+
         public async Task<bool> GetServerState(Server server) //Try connect
         {
             if (!server.IsServerOn)
@@ -119,10 +122,12 @@ namespace ServerOpsaetning.ViewModel
                 });
             }
         }
+
         private void OnPropertyChanged(string property)
         {
             if(PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
         }
+
         private async void ElapsedEventHandler(object sender, ElapsedEventArgs e)
         {
             //foreach server, if not null, getserverstate
