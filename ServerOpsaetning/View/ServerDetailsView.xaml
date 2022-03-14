@@ -18,12 +18,13 @@
         <Label Content="{Binding server.DiskSpace}" Margin="375,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="{Binding server.MemoryUsage}" Margin="340,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="{Binding server.CpuUsage}" Margin="440,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-
-        <DataGrid Height="207" VerticalAlignment="Top" HorizontalAlignment="Center" Width="480" Margin="0,217,0,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="USER"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView x:Name="tempList" Margin="10,217,10,10" ItemsSource="{Binding ProcessesString}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

@@ -16,18 +16,20 @@ namespace ServerOpsaetning.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Server server { get; set; }
+        public string ProcessesString { get; set; }
         public ServerDetailsViewModel(Server server)
         {
             this.server = server;
             CreateGetInformationTask();
+            GetServerProcesses();
         }
 
         private void CreateGetInformationTask()
         {
-            Task InfoTask = Task.Factory.StartNew(() => GetServerInformation(server));
+            Task InfoTask = Task.Factory.StartNew(() => GetServerInformation());
         }
 
-        private void GetServerInformation(Server server)
+        private void GetServerInformation()
         {
             while (true)
             {
@@ -49,6 +51,18 @@ namespace ServerOpsaetning.ViewModel
                 OnPropertyChanged();
                 Thread.Sleep(5000);
             }
+        }
+
+        private void GetServerProcesses()
+        {
+            var testCommand = server.client.RunCommand(@"ps -aux | awk '{print $1,$2}'");
+            ProcessesString = testCommand.Result;
+            string[] temp = ProcessesString.Split(@"\n");
+            foreach (string text in temp)
+            {
+                Trace.WriteLine(temp);
+            }
+            Trace.WriteLine(ProcessesString);
         }
 
         protected void OnPropertyChanged(string name = null)

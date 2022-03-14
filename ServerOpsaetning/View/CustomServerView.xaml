@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServerOpsaetning.View"
         mc:Ignorable="d"
-        Title="Custom Server" Height="220" Width="300">
+        Title="Custom Server" Height="250" Width="330">
     <Grid Background="#FFAAAAAA">
         <Label Content="Connect to custom server" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Server IP:" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

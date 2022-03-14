@@ -28,6 +28,7 @@ namespace ServerOpsaetning.Model
         private bool isServerOn;
         // Properties used in ServerDetailsView.
         
+
         public string Uptime { get; set; }
         public string DiskSpace { get; set; }
         public string MemoryUsage{ get; set; }
