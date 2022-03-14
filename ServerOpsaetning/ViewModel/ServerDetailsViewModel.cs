@@ -55,14 +55,14 @@ namespace ServerOpsaetning.ViewModel
 
         private void GetServerProcesses()
         {
-            var testCommand = server.client.RunCommand(@"ps -aux | awk '{print $1,$2}'");
+            var testCommand = server.client.RunCommand(@"ps -aux | awk '{print $1,""  "",$2,"" "",$3,"" "",$4,"" "",$9,"" "",$10,"" "",$11,"" "",$12}'");
             ProcessesString = testCommand.Result;
-            string[] temp = ProcessesString.Split(@"\n");
-            foreach (string text in temp)
-            {
-                Trace.WriteLine(temp);
-            }
-            Trace.WriteLine(ProcessesString);
+            //string[] temp = ProcessesString.Split(@"\n");
+            //foreach (string text in temp)
+            //{
+            //    Trace.WriteLine(temp);
+            //}
+            //Trace.WriteLine(ProcessesString);
         }
 
         protected void OnPropertyChanged(string name = null)

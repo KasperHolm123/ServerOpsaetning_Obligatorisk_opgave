@@ -50,7 +50,6 @@ namespace ServerOpsaetning.ViewModel
             task.Wait();
             created.Invoke(task.Result);
             CloseRequest.Invoke(this, new EventArgs());
-            string[] temp = ProcessesString.Split(@"\n");
         }
 
         private bool CanEdit()

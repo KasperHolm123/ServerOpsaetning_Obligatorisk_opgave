@@ -18,13 +18,7 @@
         <Label Content="{Binding server.DiskSpace}" Margin="375,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="{Binding server.MemoryUsage}" Margin="340,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="{Binding server.CpuUsage}" Margin="440,140,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <ListView x:Name="tempList" Margin="10,217,10,10" ItemsSource="{Binding ProcessesString}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListBox x:Name="tempList" Margin="10,217,10,10" ScrollViewer.CanContentScroll="False"/>
 
     </Grid>
 </Window>
