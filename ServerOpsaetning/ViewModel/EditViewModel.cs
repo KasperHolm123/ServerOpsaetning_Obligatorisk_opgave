@@ -24,7 +24,7 @@ namespace ServerOpsaetning.ViewModel
         public EditViewModel(ServerCreated method)
         {
             created += method;
-            EditCmd = new RelayCommand(p => Update(), p => CanEdit() );
+            EditCmd = new RelayCommand(p => Update(), p => CanEdit());
         }
 
         private Task<Server> Edit()
@@ -36,7 +36,7 @@ namespace ServerOpsaetning.ViewModel
                     _server = new Server(Host, Password, Username, Int32.Parse(Port));
                     _server.client.Connect();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Trace.WriteLine(ex.Message);
                 }
@@ -47,10 +47,10 @@ namespace ServerOpsaetning.ViewModel
         private void Update()
         {
             Task<Server> task = Edit();
-            Task.WaitAll();
+            task.Wait();
             created.Invoke(task.Result);
             CloseRequest.Invoke(this, new EventArgs());
-            
+            string[] temp = ProcessesString.Split(@"\n");
         }
 
         private bool CanEdit()
@@ -65,3 +65,4 @@ namespace ServerOpsaetning.ViewModel
         event EventHandler CloseRequest;
     }
 }
+
