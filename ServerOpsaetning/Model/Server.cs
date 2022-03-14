@@ -25,15 +25,13 @@ namespace ServerOpsaetning.Model
                 OnPropertyChanged("IsServerOn");
             }
         }
-        private string uptime;
-        private string diskspace;
         private bool isServerOn;
         // Properties used in ServerDetailsView.
         
         public string Uptime { get; set; }
         public string DiskSpace { get; set; }
-        public string RAMSpace { get; set; }
-        public string CPUUsage { get; set; }
+        public string MemoryUsage{ get; set; }
+        public string CpuUsage { get; set; }
 
 
         public Server(string IP, string username, string password, int port = 22)

@@ -15,7 +15,7 @@ namespace ServerOpsaetning.ViewModel
         private Server _server;
         public StatusViewModel()
         {
-            _server = new Server("172.16.0.154", "cfe62qdf", "jona211x", 7373);
+            _server = new Server("172.16.0.154", "jona211x", "cfe62qdf", 7373);
             GetStatus();
         }
         private async void GetStatus()

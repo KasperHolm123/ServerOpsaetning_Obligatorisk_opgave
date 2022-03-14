@@ -40,7 +40,7 @@
         </Ellipse>
 
 
-        <Button Content="Reboot" HorizontalAlignment="Left" Margin="131,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10">
+        <Button Content="Reboot" HorizontalAlignment="Left" Margin="131,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding RebootServerCmd}" CommandParameter="{Binding KasperServer}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
