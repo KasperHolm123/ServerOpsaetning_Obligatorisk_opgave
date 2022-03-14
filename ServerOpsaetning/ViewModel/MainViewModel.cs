@@ -36,6 +36,7 @@ namespace ServerOpsaetning.ViewModel
         private Server _customServer;
         public RelayCommand MoreInfoCmd { get; set; }
         public RelayCommand EditCmd { get; set; }
+        public RelayCommand RebootServerCmd { get; set; }
 
         public MainViewModel()
         {
@@ -44,9 +45,15 @@ namespace ServerOpsaetning.ViewModel
             //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
             EditCmd = new RelayCommand(p => EditInfo());
+            RebootServerCmd = new RelayCommand(p => RebootServer((Server)p));
             timer = new System.Timers.Timer(5000);
             timer.Elapsed += ElapsedEventHandler;
             timer.Start();
+        }
+
+        private void RebootServer(Server server)
+        {
+            server.client.RunCommand("reboot");
         }
 
         private void EditInfo()
@@ -84,54 +91,58 @@ namespace ServerOpsaetning.ViewModel
 
         public async Task<bool> GetServerState(Server server) //Try connect
         {
-            if (!server.IsServerOn)
+            if (server != null)
             {
-                return server.IsServerOn = await Task<bool>.Factory.StartNew(() =>
+                if (!server.IsServerOn)
                 {
-                    try
+                    return server.IsServerOn = await Task<bool>.Factory.StartNew(() =>
                     {
-                        server.client.Connect();
-                        var command1 = server.client.RunCommand("uptime");
-                        Trace.WriteLine(command1.Result);
-                        Trace.WriteLine("Connection attained.");
-                        server.ServerIP = server.client.ConnectionInfo.Host;
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLine("Connection timed out.");
-                    }
-                    return server.client.IsConnected;
-                });
-            }
-            else
-            {
-                return server.IsServerOn = await Task<bool>.Factory.StartNew(() =>
+                        try
+                        {
+                            server.client.Connect();
+                            var command1 = server.client.RunCommand("uptime");
+                            Trace.WriteLine(command1.Result);
+                            Trace.WriteLine("Connection attained.");
+                            server.ServerIP = server.client.ConnectionInfo.Host;
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine("Connection timed out.");
+                        }
+                        return server.client.IsConnected;
+                    });
+                }
+                else
                 {
-                    try
+                    return server.IsServerOn = await Task<bool>.Factory.StartNew(() =>
                     {
-                        var command1 = server.client.RunCommand("ping -c 10 -q " + server.ServerIP);
-                        if (command1.Result.Contains("0% packet loss")) return true;
+                        try
+                        {
+                            var command1 = server.client.RunCommand("ping -c 1 -q " + server.ServerIP);
+                            if (command1.Result.Contains("0% packet loss")) return true;
 
-                        else return false;
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLine("Connection timed out.");
-                    }
-                    return server.client.IsConnected;
-                });
+                            else return false;
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine("Connection timed out.");
+                        }
+                        return server.client.IsConnected;
+                    });
+                }
             }
+            return false;
         }
 
         private void OnPropertyChanged(string property)
         {
-            if(PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         private async void ElapsedEventHandler(object sender, ElapsedEventArgs e)
         {
             //foreach server, if not null, getserverstate
-            bool res = await GetServerState(JonasServer);
+            bool res = await GetServerState(CustomServer);
         }
     }
 

@@ -22,12 +22,23 @@ namespace ServerOpsaetning.View
     public partial class ServerDetailsView : Window
     {
         ServerDetailsViewModel model;
+        
 
         public ServerDetailsView(Server server)
         {
             model = new ServerDetailsViewModel(server);
             DataContext = model;
             InitializeComponent();
+            string[] tempArr = new string[model.ProcessesString.Length];
+            model.ProcessesString.Split(" ");
+            for (int i = 0; i < model.ProcessesString.Length; i++)
+            {
+                tempArr[i] = model.ProcessesString;
+            }
+            for (int i = 0; i < model.ProcessesString.Length; i++)
+            {
+                tempList.Items.Add(tempArr[i]);
+            }
         }
     }
 }
