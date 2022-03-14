@@ -36,7 +36,8 @@ namespace ServerOpsaetning.ViewModel
                     var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$6,""minutes""}'");
                     var MemoryUsageCommand = server.client.RunCommand(@"free -m | grep ""Mem:"" | awk '{print $3,""MB used of"",$2,""MB""}'");
                     var CpuUsageCommand = server.client.RunCommand(@"top -b -n1 | grep ""Cpu(s)"" | awk '{print $2 + $4, ""%""}'");
-
+                    var DiskUsageCommand = server.client.RunCommand(@"df -hx squashfs --total | grep ""total"" | awk '{print $3,""used of"",$2}'");
+                    server.DiskSpace = string.Format(DiskUsageCommand.Result);
                     server.Uptime = string.Format(UptimeCommand.Result);
                     server.DiskSpace = string.Format(MemoryUsageCommand.Result);
                     server.CPUUsage = string.Format(CpuUsageCommand.Result);
