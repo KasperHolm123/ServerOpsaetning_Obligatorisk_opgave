@@ -22,6 +22,7 @@ namespace ServerOpsaetning.ViewModel
         public Server CustomServer { get; set; }
 
         public RelayCommand MoreInfoCmd { get; set; }
+        public RelayCommand RebootServerCmd { get; set; }
         
         public MainViewModel()
         {
@@ -29,6 +30,7 @@ namespace ServerOpsaetning.ViewModel
             JonasServer = new Server("78.141.237.38", "root", "6rQ,%zZ!sy[UCu,r"); // Værdier skal ændres
             //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
+            RebootServerCmd = new RelayCommand(p => RebootServer((Server)p));
         }
 
         // Metode for at teste om man kan connecte til sin server.
@@ -44,6 +46,11 @@ namespace ServerOpsaetning.ViewModel
         {
             ServerDetailsView sdv = new ServerDetailsView(server);
             sdv.ShowDialog();
+        }
+
+        private void RebootServer(Server server)
+        {
+            server.client.RunCommand("reboot");
         }
     }
 
