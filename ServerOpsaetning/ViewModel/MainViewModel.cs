@@ -81,8 +81,25 @@ namespace ServerOpsaetning.ViewModel
                 if (!CustomServer.client.IsConnected)
                 {
                     await Task.Factory.StartNew(() => CustomServer.GetServerState());
+                    CustomServer.IsServerOn = CustomServer.client.IsConnected;
                 }
             }
+            if (!CentOSServer.client.IsConnected)
+            {
+                await Task.Factory.StartNew(() => CentOSServer.GetServerState());
+                CentOSServer.IsServerOn = CentOSServer.client.IsConnected;
+            }
+            if (!UbuntuServer.client.IsConnected)
+            {
+                await Task.Factory.StartNew(() => UbuntuServer.GetServerState());
+                UbuntuServer.IsServerOn = UbuntuServer.client.IsConnected;
+            }
+            if (!DebianServer.client.IsConnected)
+            {
+                await Task.Factory.StartNew(() => DebianServer.GetServerState());
+                DebianServer.IsServerOn = DebianServer.client.IsConnected;
+            }
+
         }
 
         private void EditInfo()
