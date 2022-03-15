@@ -139,7 +139,7 @@
                 </Style>
             </Ellipse.Style>
         </Ellipse>
-        <Button Content="Reboot" HorizontalAlignment="Left" Margin="495,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10">
+        <Button Content="Reboot" HorizontalAlignment="Left" Margin="495,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding RebootServerCmd}" CommandParameter="{Binding JonasServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>

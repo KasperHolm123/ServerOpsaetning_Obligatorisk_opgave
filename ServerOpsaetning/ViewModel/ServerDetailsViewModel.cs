@@ -14,11 +14,12 @@ namespace ServerOpsaetning.ViewModel
     class ServerDetailsViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public event Action<string> ProcessFound;
         public Server server { get; set; }
         public string ProcessesString { get; set; }
-        public ServerDetailsViewModel(Server server)
+        public ServerDetailsViewModel(Server server, Action<string> action)
         {
+            ProcessFound = action;
             this.server = server;
             CreateGetInformationTask();
             GetServerProcesses();
@@ -57,6 +58,7 @@ namespace ServerOpsaetning.ViewModel
         {
             var testCommand = server.client.RunCommand(@"ps -aux | awk '{print $1,""  "",$2,"" "",$3,"" "",$4,"" "",$9,"" "",$10,"" "",$11,"" "",$12}'");
             ProcessesString = testCommand.Result;
+            ProcessFound.Invoke(ProcessesString);
             //string[] temp = ProcessesString.Split(@"\n");
             //foreach (string text in temp)
             //{
