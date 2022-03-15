@@ -19,8 +19,9 @@ namespace ServerOpsaetning.ViewModel
 {
     public delegate void MessageEventHandler(Exception ex);
 
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged, ICloseable
     {
+        public event EventHandler CloseRequest;
         public event MessageEventHandler MessageHandler;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -32,16 +33,20 @@ namespace ServerOpsaetning.ViewModel
         public RelayCommand MoreInfoCmd { get; set; }
         public RelayCommand EditCmd { get; set; }
         public RelayCommand RebootServerCmd { get; set; }
+
         private System.Timers.Timer timer;
 
         public MainViewModel()
         {
-            CentOSServer = new Server("78.141.232.109", "root", "+1aEX5C)pP22a!,1");
-            //JonasServer = new Server("172.16.0.154","jona211x", "cfe62qdf", 7373);
-            //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
+            // Instantiate commands
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
             EditCmd = new RelayCommand(p => EditInfo());
             RebootServerCmd = new RelayCommand(p => RebootServer((Server)p));
+            // Instantiate servers
+            CentOSServer = new Server("78.141.232.109", "root", "+1aEX5C)pP22a!,1");
+            UbuntuServer = new Server("78.141.237.38", "root", "6rQ,%zZ!sy[UCu,r");
+            DebianServer = new Server("45.32.176.122", "root", "g2A$B[n@x7uUKj-G");
+            // Start calling methods
             //DispatcherTimer timer = new DispatcherTimer();
             //timer.Interval = TimeSpan.FromSeconds(10);
             //timer.Tick += ElapsedMethod;
@@ -51,9 +56,11 @@ namespace ServerOpsaetning.ViewModel
             ConnectToServers();
         }
 
-        private async Task ConnectToServers()
+        private void ConnectToServers()
         {
-            await Task.Factory.StartNew(() => CentOSServer.GetServerState());
+            _ = CentOSServer.GetServerState(); // Intellisense mener at discards er gode her. Aner ikke hvorfor.
+            _ = UbuntuServer.GetServerState();
+            _ = DebianServer.GetServerState();
         }
 
         private void RebootServer(Server server)
@@ -88,7 +95,10 @@ namespace ServerOpsaetning.ViewModel
         private void ViewEditServer()
         {
             CustomServerView csv = new CustomServerView(AddServer);
-            csv.ShowDialog();
+            if (csv.ShowDialog() == false)
+            {
+                CustomServer = csv.model.Server1;
+            }
         }
 
         private void AddServer(Server server)
@@ -162,11 +172,6 @@ namespace ServerOpsaetning.ViewModel
             return false;
         }
 
-        private void OnPropertyChanged(string property = null)
-        {
-            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
         private async void ElapsedMethod(object sender, ElapsedEventArgs e)
         {
             //foreach server, if not null, getserverstate
@@ -208,6 +213,10 @@ namespace ServerOpsaetning.ViewModel
                 _customServer = value;
                 OnPropertyChanged();
             }
+        }
+        private void OnPropertyChanged(string property = null)
+        {
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 

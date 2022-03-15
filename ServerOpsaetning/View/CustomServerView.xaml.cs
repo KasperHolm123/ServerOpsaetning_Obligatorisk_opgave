@@ -21,7 +21,7 @@ namespace ServerOpsaetning.View
     /// </summary>
     public partial class CustomServerView : Window
     {
-        EditViewModel model;
+        public EditViewModel model;
         public CustomServerView(ServerCreated server)
         {
             model = new EditViewModel(server);

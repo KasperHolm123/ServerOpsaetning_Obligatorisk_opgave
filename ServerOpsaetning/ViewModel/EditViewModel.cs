@@ -41,6 +41,7 @@ namespace ServerOpsaetning.ViewModel
                 {
                     Trace.WriteLine(ex.Message);
                 }
+                Server1.IsServerOn = Server1.client.IsConnected;
                 return Server1;
             });
         }
@@ -50,7 +51,6 @@ namespace ServerOpsaetning.ViewModel
             task.Wait();
             created.Invoke(task.Result);
             CloseRequest.Invoke(this, new EventArgs());
-
         }
         private bool CanEdit()
         {
