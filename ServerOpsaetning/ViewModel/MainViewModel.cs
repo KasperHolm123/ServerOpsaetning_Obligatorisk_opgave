@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using System.Timers;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace ServerOpsaetning.ViewModel
 {
@@ -53,7 +54,13 @@ namespace ServerOpsaetning.ViewModel
 
         private void RebootServer(Server server)
         {
-            server.client.RunCommand("reboot");
+            using (var stream = server.client.CreateShellStream("tty1", 0, 0, 0, 0, 1024))
+            {
+                stream.WriteLine("sudo reboot");
+                stream.Expect("password");
+                stream.WriteLine(server.Password);
+                var output = stream.Read();
+            }
         }
 
         private void EditInfo()

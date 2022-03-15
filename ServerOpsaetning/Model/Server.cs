@@ -33,10 +33,12 @@ namespace ServerOpsaetning.Model
         public string DiskSpace { get; set; }
         public string MemoryUsage{ get; set; }
         public string CpuUsage { get; set; }
+        public string Password { get; set; }
 
 
         public Server(string IP, string username, string password, int port = 22)
         {
+            Password = password;
             client = new SshClient(IP, port, username, password);
             try
             {
