@@ -32,10 +32,11 @@ namespace ServerOpsaetning.ViewModel
         public RelayCommand MoreInfoCmd { get; set; }
         public RelayCommand EditCmd { get; set; }
         public RelayCommand RebootServerCmd { get; set; }
+        private System.Timers.Timer timer;
 
         public MainViewModel()
         {
-            //KasperServer = new Server("192.168.1.179", "kasper", "kasper123", 7777);
+            CentOSServer = new Server("78.141.232.109", "root", "+1aEX5C)pP22a!,1");
             //JonasServer = new Server("172.16.0.154","jona211x", "cfe62qdf", 7373);
             //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
@@ -44,12 +45,15 @@ namespace ServerOpsaetning.ViewModel
             //DispatcherTimer timer = new DispatcherTimer();
             //timer.Interval = TimeSpan.FromSeconds(10);
             //timer.Tick += ElapsedMethod;
+            timer = new System.Timers.Timer(5000);
+            timer.Elapsed += CheckServerConnectionAsync;
+            timer.Start();
             ConnectToServers();
         }
 
         private async Task ConnectToServers()
         {
-            await Task.Factory.StartNew(() => CentOSServer = new Server("192.168.1.179", "kasper", "kasper123", 7777));
+            await Task.Factory.StartNew(() => CentOSServer.GetServerState());
         }
 
         private void RebootServer(Server server)
@@ -60,6 +64,17 @@ namespace ServerOpsaetning.ViewModel
                 stream.Expect("password");
                 stream.WriteLine(server.Password);
                 var output = stream.Read();
+            }
+        }
+
+        private async void CheckServerConnectionAsync(object sender, ElapsedEventArgs e)
+        {
+            if (CustomServer != null)
+            {
+                if (!CustomServer.client.IsConnected)
+                {
+                    await Task.Factory.StartNew(() => CustomServer.GetServerState());
+                }
             }
         }
 
