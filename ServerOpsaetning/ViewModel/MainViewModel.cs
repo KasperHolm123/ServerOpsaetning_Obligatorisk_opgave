@@ -46,7 +46,7 @@ namespace ServerOpsaetning.ViewModel
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
             EditCmd = new RelayCommand(p => EditInfo());
             RebootServerCmd = new RelayCommand(p => RebootServer((Server)p));
-            timer = new System.Timers.Timer(5000);
+            timer = new System.Timers.Timer(2500);
             timer.Elapsed += ElapsedEventHandler;
             timer.Start();
         }
@@ -142,7 +142,7 @@ namespace ServerOpsaetning.ViewModel
         private async void ElapsedEventHandler(object sender, ElapsedEventArgs e)
         {
             //foreach server, if not null, getserverstate
-            bool res = await GetServerState(CustomServer);
+            bool res = await GetServerState(JonasServer);
         }
     }
 

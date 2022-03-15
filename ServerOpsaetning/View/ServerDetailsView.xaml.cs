@@ -26,10 +26,13 @@ namespace ServerOpsaetning.View
 
         public ServerDetailsView(Server server)
         {
-            model = new ServerDetailsViewModel(server);
+            InitializeComponent();
+            model = new ServerDetailsViewModel(server,(p)=>
+            {
+                tempList.Items.Clear();
+                tempList.Items.Add(p);
+            });
             DataContext = model;
-            InitializeComponent();    
-            tempList.Items.Add(model.ProcessesString);
         }
     }
 }
