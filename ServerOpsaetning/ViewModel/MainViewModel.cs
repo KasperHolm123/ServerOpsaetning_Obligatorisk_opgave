@@ -155,7 +155,7 @@ namespace ServerOpsaetning.ViewModel
         private async void ElapsedMethod(object sender, ElapsedEventArgs e)
         {
             //foreach server, if not null, getserverstate
-            bool res = await GetServerState(JonasServer);
+            bool res = await GetServerState(CustomServer);
         }
 
         public Server CentOSServer
