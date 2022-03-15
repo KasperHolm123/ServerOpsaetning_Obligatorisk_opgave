@@ -22,9 +22,9 @@ namespace ServerOpsaetning.View
     public partial class CustomServerView : Window
     {
         EditViewModel model;
-        public CustomServerView(ServerCreated method)
+        public CustomServerView(ServerCreated server)
         {
-            model = new EditViewModel(method);
+            model = new EditViewModel(server);
             model.CloseRequest += (s, e) => this.Close();
             DataContext = model;
             InitializeComponent();

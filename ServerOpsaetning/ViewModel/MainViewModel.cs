@@ -16,24 +16,18 @@ using System.ComponentModel;
 
 namespace ServerOpsaetning.ViewModel
 {
+    public delegate void MessageEventHandler(Exception ex);
+
     public class MainViewModel : INotifyPropertyChanged
     {
+        public event MessageEventHandler MessageHandler;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Server KasperServer { get; set; }
-        public Server JonasServer { get; set; }
-        public Server JohanServer { get; set; }
-        public Server CustomServer
-        {
-            get { return _customServer; }
-            set
-            {
-                _customServer = value;
-                OnPropertyChanged("CustomServer");
-            }
-        }
-        private System.Timers.Timer timer;
+        private Server _centOSServer;
+        private Server _ubuntuServer;
+        private Server _debianServer;
         private Server _customServer;
+        
         public RelayCommand MoreInfoCmd { get; set; }
         public RelayCommand EditCmd { get; set; }
         public RelayCommand RebootServerCmd { get; set; }
@@ -41,14 +35,20 @@ namespace ServerOpsaetning.ViewModel
         public MainViewModel()
         {
             //KasperServer = new Server("192.168.1.179", "kasper", "kasper123", 7777);
-            JonasServer = new Server("172.16.0.154","jona211x", "cfe62qdf", 7373);
+            //JonasServer = new Server("172.16.0.154","jona211x", "cfe62qdf", 7373);
             //JohanServer = new Server("temp", "temp", "temp", 7777); // Værdier skal ændres
             MoreInfoCmd = new RelayCommand(p => ViewMoreInfo((Server)p));
             EditCmd = new RelayCommand(p => EditInfo());
             RebootServerCmd = new RelayCommand(p => RebootServer((Server)p));
-            timer = new System.Timers.Timer(5000);
-            timer.Elapsed += ElapsedEventHandler;
-            timer.Start();
+            //DispatcherTimer timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(10);
+            //timer.Tick += ElapsedMethod;
+            ConnectToServers();
+        }
+
+        private async Task ConnectToServers()
+        {
+            await Task.Factory.StartNew(() => CentOSServer = new Server("192.168.1.179", "kasper", "kasper123", 7777));
         }
 
         private void RebootServer(Server server)
@@ -58,12 +58,12 @@ namespace ServerOpsaetning.ViewModel
 
         private void EditInfo()
         {
-            Thread tr = new Thread(() => EditServer());
+            Thread tr = new Thread(() => ViewEditServer());
             tr.SetApartmentState(ApartmentState.STA);
             tr.Start();
         }
 
-        private void EditServer()
+        private void ViewEditServer()
         {
             CustomServerView csv = new CustomServerView(AddServer);
             csv.ShowDialog();
@@ -107,7 +107,10 @@ namespace ServerOpsaetning.ViewModel
                         }
                         catch (Exception ex)
                         {
-                            Trace.WriteLine("Connection timed out.");
+                            if (MessageHandler != null)
+                            {
+                                MessageHandler(ex);
+                            }
                         }
                         return server.client.IsConnected;
                     });
@@ -125,7 +128,10 @@ namespace ServerOpsaetning.ViewModel
                         }
                         catch (Exception ex)
                         {
-                            Trace.WriteLine("Connection timed out.");
+                            if (MessageHandler != null)
+                            {
+                                MessageHandler(ex);
+                            }
                         }
                         return server.client.IsConnected;
                     });
@@ -134,15 +140,52 @@ namespace ServerOpsaetning.ViewModel
             return false;
         }
 
-        private void OnPropertyChanged(string property)
+        private void OnPropertyChanged(string property = null)
         {
             if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        private async void ElapsedEventHandler(object sender, ElapsedEventArgs e)
+        private async void ElapsedMethod(object sender, ElapsedEventArgs e)
         {
             //foreach server, if not null, getserverstate
             bool res = await GetServerState(CustomServer);
+        }
+
+        public Server CentOSServer
+        {
+            get { return _centOSServer; }
+            set
+            {
+                _centOSServer = value;
+                OnPropertyChanged();
+            }
+        }
+        public Server UbuntuServer
+        {
+            get { return _ubuntuServer; }
+            set
+            {
+                _ubuntuServer = value;
+                OnPropertyChanged();
+            }
+        }
+        public Server DebianServer
+        {
+            get { return _debianServer; }
+            set
+            {
+                _debianServer = value;
+                OnPropertyChanged();
+            }
+        }
+        public Server CustomServer
+        {
+            get { return _customServer; }
+            set
+            {
+                _customServer = value;
+                OnPropertyChanged();
+            }
         }
     }
 

@@ -26,6 +26,10 @@ namespace ServerOpsaetning
         public MainWindow()
         {
             DataContext = model;
+            model.MessageHandler += delegate (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
             InitializeComponent();
         }
     }

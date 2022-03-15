@@ -9,7 +9,7 @@
     <Grid>
         <!-- Kaspers server template -->
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
-        <Label Content="Kasper - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="CentOS - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,130,0,0" VerticalAlignment="Top"/>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="292,130,0,0">
@@ -18,8 +18,8 @@
                     <Setter Property="Content" Value="0"/>
                     <Setter Property="Margin" Value="29,130,0,0"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding KasperServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="Content" Value="{Binding Path=KasperServer.ServerIP}"/>
+                        <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Content" Value="{Binding CentOSServer.ServerIP}"/>
                             <Setter Property="Margin" Value="235,130,0,0"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -31,7 +31,7 @@
                 <Style TargetType="Ellipse">
                     <Setter Property="Fill" Value="Red"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding KasperServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                        <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -40,14 +40,14 @@
         </Ellipse>
 
 
-        <Button Content="Reboot" HorizontalAlignment="Left" Margin="131,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding RebootServerCmd}" CommandParameter="{Binding KasperServer}">
+        <Button Content="Reboot" HorizontalAlignment="Left" Margin="131,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding RebootServerCmd}" CommandParameter="{Binding CentOSServer}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="More info" HorizontalAlignment="Left" Margin="249,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding KasperServer}">
+        <Button Content="More info" HorizontalAlignment="Left" Margin="249,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding CentOSServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -94,7 +94,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="More info" HorizontalAlignment="Left" Margin="610,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding KasperServer}">
+        <Button Content="More info" HorizontalAlignment="Left" Margin="610,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding CustomServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -110,7 +110,7 @@
         </Button>
         <!-- Jonas' server -->
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="484,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
-        <Label Content="Jonas - Server" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ubuntu - Server" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="484,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="484,130,0,0" VerticalAlignment="Top"/>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="657,130,0,0">
@@ -119,8 +119,8 @@
                     <Setter Property="Content" Value="0"/>
                     <Setter Property="Margin" Value="293,130,0,0"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding JonasServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="Content" Value="{Binding JonasServer.ServerIP}"/>
+                        <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Content" Value="{Binding UbuntuServer.ServerIP}"/>
                             <Setter Property="Margin" Value="235,130,0,0"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -132,7 +132,7 @@
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="Red"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding JonasServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                        <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -146,7 +146,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="More info" HorizontalAlignment="Left" Margin="613,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding JonasServer}">
+        <Button Content="More info" HorizontalAlignment="Left" Margin="613,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding UbuntuServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -154,7 +154,7 @@
             </Button.Resources>
         </Button>
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
-        <Label Content="Johan - Server" HorizontalAlignment="Left" Margin="176,249,0,0" VerticalAlignment="Top"/>
+        <Label Content="Debian - Server" HorizontalAlignment="Left" Margin="176,249,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,273,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,299,0,0" VerticalAlignment="Top"/>
         <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="293,299,0,0">
@@ -163,8 +163,8 @@
                     <Setter Property="Content" Value="0"/>
                     <Setter Property="Margin" Value="293,130,0,0"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding JohanServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="Content" Value="{Binding JohanServer.ServerIP}"/>
+                        <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Content" Value="{Binding DebianServer.ServerIP}"/>
                             <Setter Property="Margin" Value="235,130,0,0"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -176,7 +176,7 @@
                 <Style TargetType="{x:Type Ellipse}">
                     <Setter Property="Fill" Value="Red"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding JohanServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                        <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -190,7 +190,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="More info" HorizontalAlignment="Left" Margin="249,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding JohanServer}">
+        <Button Content="More info" HorizontalAlignment="Left" Margin="249,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding DebianServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>

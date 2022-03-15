@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,21 @@ using ServerOpsaetning.Model;
 namespace ServerOpsaetning.ViewModel
 {
     public delegate void ServerCreated(Server server);
-    public class EditViewModel : ICloseable
+    public class EditViewModel : ICloseable, INotifyPropertyChanged
     {
         public event EventHandler CloseRequest;
         public event ServerCreated created;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string Host { get; set; }
-        public int Port { get; set; }
+        public string Port { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public RelayCommand EditCmd { get; set; }
         private Server _server;
-        public EditViewModel(ServerCreated method)
+        public EditViewModel(ServerCreated server)
         {
-            created += method;
+            created += server;
             EditCmd = new RelayCommand(p => Update(), p => CanEdit());
         }
         private Task<Server> Edit()
@@ -31,17 +34,14 @@ namespace ServerOpsaetning.ViewModel
             {
                 try
                 {
-                    _server = new Server(Host, Username, Password, Port);
-                    _server.client.Connect();
-                    var stream = _server.client.CreateShellStream("tty1", 0, 0, 0, 0, 1024);
-                    stream.WriteLine(Username);
-                    stream.WriteLine(Password);
+                    Server1 = new Server(Host, Username, Password, Int32.Parse(Port));
+                    Server1.client.Connect();
                 }
                 catch (Exception ex)
                 {
                     Trace.WriteLine(ex.Message);
                 }
-                return _server;
+                return Server1;
             });
         }
         private void Update()
@@ -56,6 +56,21 @@ namespace ServerOpsaetning.ViewModel
         {
             //Kan ikke være null, så fucker commands op, port skal være int
             return Host != null && Password != null && Username != null && Port != default;
+        }
+
+        public Server Server1
+        {
+            get { return _server; }
+            set
+            {
+                _server = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void OnPropertyChanged(string property = null)
+        {
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
     public interface ICloseable
