@@ -45,12 +45,28 @@
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </Button.Resources>
         </Button>
         <Button Content="More info" HorizontalAlignment="Left" Margin="249,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding CentOSServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>
@@ -87,10 +103,18 @@
         </Ellipse>
 
 
-        <Button Content="Reboot" HorizontalAlignment="Left" Margin="495,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10">
+        <Button Content="Reboot" HorizontalAlignment="Left" Margin="495,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding RebootServerCmd}" CommandParameter="{Binding CustomServer}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>
@@ -98,6 +122,14 @@
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>
@@ -144,12 +176,28 @@
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </Button.Resources>
         </Button>
         <Button Content="More info" HorizontalAlignment="Left" Margin="613,161,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding UbuntuServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>
@@ -188,12 +236,28 @@
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </Button.Resources>
         </Button>
         <Button Content="More info" HorizontalAlignment="Left" Margin="249,330,0,0" Height="25" Width="60" VerticalAlignment="Top" Background="#FF343434" Foreground="White" FontSize="10" Command="{Binding MoreInfoCmd}" CommandParameter="{Binding DebianServer}">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>

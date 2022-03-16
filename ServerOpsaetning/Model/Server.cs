@@ -50,17 +50,6 @@ namespace ServerOpsaetning.Model
             Password = password;
             ServerIP = IP;
             client = new SshClient(IP, port, username, password);
-            //try
-            //{
-            //    Thread.Sleep(5000);
-            //    client.Connect();
-            //    Trace.WriteLine("Connection established.");
-            //    ServerIP = IP; // Only get the server IP if the connection has been established.
-            //}
-            //catch (Exception ex)
-            //{
-            //    Trace.WriteLine("Connection timed out.");
-            //}
             IsServerOn = client.IsConnected;
         }
 

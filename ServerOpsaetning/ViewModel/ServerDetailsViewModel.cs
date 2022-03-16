@@ -37,13 +37,16 @@ namespace ServerOpsaetning.ViewModel
                 try
                 {
                     var UptimeCommand = server.client.RunCommand(@"uptime | awk -F'( |,|:)+' '{print$6,""minutes""}'");
-                    var MemoryUsageCommand = server.client.RunCommand(@"free -m | grep ""Mem:"" | awk '{print $3,""MB used of"",$2,""MB""}'");
-                    var CpuUsageCommand = server.client.RunCommand(@"top -b -n1 | grep ""Cpu(s)"" | awk '{print $2 + $4, ""%""}'");
-                    var DiskUsageCommand = server.client.RunCommand(@"df -hx squashfs --total | grep ""total"" | awk '{print $3,""used of"",$2}'");
                     server.Uptime = string.Format(UptimeCommand.Result);
-                    server.DiskSpace = string.Format(DiskUsageCommand.Result);
+                    var MemoryUsageCommand = server.client.RunCommand(@"free -m | grep ""Mem:"" | awk '{print $3,""MB used of"",$2,""MB""}'");
                     server.MemoryUsage= string.Format(MemoryUsageCommand.Result);
+                    var CpuUsageCommand = server.client.RunCommand(@"top -b -n1 | grep ""Cpu(s)"" | awk '{print $2 + $4, ""%""}'");
                     server.CpuUsage = string.Format(CpuUsageCommand.Result);
+                    var DiskUsageCommand = server.client.RunCommand(@"df -hx squashfs --total | grep ""total"" | awk '{print $3,""used of"",$2}'");
+                    server.DiskSpace = string.Format(DiskUsageCommand.Result);
+                    var ProcessesCommand = server.client.RunCommand(@"ps -aux | awk '{print $1,""  "",$2,"" "",$3,"" "",$4,"" "",$9,"" "",$10,"" "",$11,"" "",$12}'");
+                    ProcessesString = ProcessesCommand.Result;
+                    ProcessFound.Invoke(ProcessesString);
                 }
                 catch (Exception ex)
                 {
@@ -59,12 +62,6 @@ namespace ServerOpsaetning.ViewModel
             var testCommand = server.client.RunCommand(@"ps -aux | awk '{print $1,""  "",$2,"" "",$3,"" "",$4,"" "",$9,"" "",$10,"" "",$11,"" "",$12}'");
             ProcessesString = testCommand.Result;
             ProcessFound.Invoke(ProcessesString);
-            //string[] temp = ProcessesString.Split(@"\n");
-            //foreach (string text in temp)
-            //{
-            //    Trace.WriteLine(temp);
-            //}
-            //Trace.WriteLine(ProcessesString);
         }
 
         protected void OnPropertyChanged(string name = null)

@@ -23,12 +23,11 @@ namespace ServerOpsaetning.ViewModel
         public string Password { get; set; }
         public RelayCommand EditCmd { get; set; }
         private Server _server;
-        public EditViewModel(ServerCreated server)
+        public EditViewModel()
         {
-            created += server;
-            EditCmd = new RelayCommand(p => Update(), p => CanEdit());
+            EditCmd = new RelayCommand(p => UpdateClose(), p => CanEdit());
         }
-        private Task<Server> Edit()
+        private Task<Server> CreateCustomServer()
         {
             return Task<Server>.Factory.StartNew(() =>
             {
@@ -45,11 +44,10 @@ namespace ServerOpsaetning.ViewModel
                 return Server1;
             });
         }
-        private void Update()
+        private void UpdateClose()
         {
-            Task<Server> task = Edit();
+            Task<Server> task = CreateCustomServer();
             task.Wait();
-            created.Invoke(task.Result);
             CloseRequest.Invoke(this, new EventArgs());
         }
         private bool CanEdit()
