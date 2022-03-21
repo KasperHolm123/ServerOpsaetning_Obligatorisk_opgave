@@ -8,7 +8,7 @@
         Title="Controlpanel" Height="450" Width="800">
     <Grid>
         <!-- Kaspers server template -->
-        <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFC9C9C9" StrokeThickness="0"/>
         <Label Content="CentOS - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,130,0,0" VerticalAlignment="Top"/>
@@ -29,7 +29,7 @@
         <Ellipse HorizontalAlignment="Left" Height="16" Margin="293,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
             <Ellipse.Style>
                 <Style TargetType="Ellipse">
-                    <Setter Property="Fill" Value="Red"/>
+                    <Setter Property="Fill" Value="Gray"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
@@ -46,10 +46,10 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -61,17 +61,17 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>
         <!-- Kaspers server -->
-        <Rectangle HorizontalAlignment="Left" Height="110" Margin="480,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Left" Height="110" Margin="480,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFC9C9C9" StrokeThickness="0"/>
         <Label Content="Custom - Server" HorizontalAlignment="Left" Margin="530,250,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="480,273,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="480,299,0,0" VerticalAlignment="Top"/>
@@ -92,7 +92,7 @@
         <Ellipse HorizontalAlignment="Left" Height="16" Margin="655,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
             <Ellipse.Style>
                 <Style TargetType="Ellipse">
-                    <Setter Property="Fill" Value="Red"/>
+                    <Setter Property="Fill" Value="Gray"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
@@ -109,10 +109,10 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -124,10 +124,10 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -141,7 +141,7 @@
             </Button.Resources>
         </Button>
         <!-- Jonas' server -->
-        <Rectangle HorizontalAlignment="Left" Height="110" Margin="484,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Left" Height="110" Margin="484,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFC9C9C9" StrokeThickness="0"/>
         <Label Content="Ubuntu - Server" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="484,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="484,130,0,0" VerticalAlignment="Top"/>
@@ -162,7 +162,7 @@
         <Ellipse HorizontalAlignment="Left" Height="16" Margin="657,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
-                    <Setter Property="Fill" Value="Red"/>
+                    <Setter Property="Fill" Value="Gray"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
@@ -177,10 +177,10 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -192,16 +192,16 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Resources>
         </Button>
-        <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFC9C9C9" StrokeThickness="0"/>
         <Label Content="Debian - Server" HorizontalAlignment="Left" Margin="176,249,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,273,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,299,0,0" VerticalAlignment="Top"/>
@@ -222,7 +222,7 @@
         <Ellipse HorizontalAlignment="Left" Height="16" Margin="293,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
-                    <Setter Property="Fill" Value="Red"/>
+                    <Setter Property="Fill" Value="Gray"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Fill" Value="Green"/>
@@ -237,10 +237,10 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -252,10 +252,10 @@
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
