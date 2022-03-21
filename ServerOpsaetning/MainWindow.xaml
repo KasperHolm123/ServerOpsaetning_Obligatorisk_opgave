@@ -12,11 +12,11 @@
         <Label Content="CentOS - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,130,0,0" VerticalAlignment="Top"/>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="292,130,0,0">
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Content" Value="0"/>
-                    <Setter Property="Margin" Value="29,130,0,0"/>
+                    <Setter Property="Margin" Value="292,130,0,0"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CentOSServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Content" Value="{Binding CentOSServer.ServerIP}"/>
@@ -73,23 +73,23 @@
         <!-- Kaspers server -->
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="480,249,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFAAAAAA" StrokeThickness="0"/>
         <Label Content="Custom - Server" HorizontalAlignment="Left" Margin="530,250,0,0" VerticalAlignment="Top"/>
-        <Label Content="Status:" HorizontalAlignment="Left" Margin="480,280,0,0" VerticalAlignment="Top"/>
-        <Label Content="IP:" HorizontalAlignment="Left" Margin="480,310,0,0" VerticalAlignment="Top"/>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="655,307,0,0">
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="480,273,0,0" VerticalAlignment="Top"/>
+        <Label Content="IP:" HorizontalAlignment="Left" Margin="480,299,0,0" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Content" Value="0"/>
-                    <Setter Property="Margin" Value="29,130,0,0"/>
+                    <Setter Property="Margin" Value="655,299,0,0"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding CustomServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Content" Value="{Binding CustomServer.ServerIP}"/>
-                            <Setter Property="Margin" Value="235,130,0,0"/>
+                            <Setter Property="Margin" Value="600,299,0,0"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Label.Style>
         </Label>
-        <Ellipse HorizontalAlignment="Left" Height="16" Margin="655,280,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
+        <Ellipse HorizontalAlignment="Left" Height="16" Margin="655,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="16" StrokeThickness="0">
             <Ellipse.Style>
                 <Style TargetType="Ellipse">
                     <Setter Property="Fill" Value="Red"/>
@@ -145,15 +145,15 @@
         <Label Content="Ubuntu - Server" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="484,104,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="484,130,0,0" VerticalAlignment="Top"/>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="657,130,0,0">
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top">
             <Label.Style>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Content" Value="0"/>
-                    <Setter Property="Margin" Value="293,130,0,0"/>
+                    <Setter Property="Margin" Value="657,130,0,0"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding UbuntuServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Content" Value="{Binding UbuntuServer.ServerIP}"/>
-                            <Setter Property="Margin" Value="235,130,0,0"/>
+                            <Setter Property="Margin" Value="600,130,0,0"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -205,15 +205,15 @@
         <Label Content="Debian - Server" HorizontalAlignment="Left" Margin="176,249,0,0" VerticalAlignment="Top"/>
         <Label Content="Status:" HorizontalAlignment="Left" Margin="120,273,0,0" VerticalAlignment="Top"/>
         <Label Content="IP:" HorizontalAlignment="Left" Margin="120,299,0,0" VerticalAlignment="Top"/>
-        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Margin="293,299,0,0">
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top">
             <Label.Style>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Content" Value="0"/>
-                    <Setter Property="Margin" Value="293,130,0,0"/>
+                    <Setter Property="Margin" Value="293,299,0,0"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding DebianServer.IsServerOn, UpdateSourceTrigger=PropertyChanged}" Value="True">
                             <Setter Property="Content" Value="{Binding DebianServer.ServerIP}"/>
-                            <Setter Property="Margin" Value="235,130,0,0"/>
+                            <Setter Property="Margin" Value="235,299,0,0"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

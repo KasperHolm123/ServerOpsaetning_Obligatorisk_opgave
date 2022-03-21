@@ -60,10 +60,9 @@ namespace ServerOpsaetning.ViewModel
                 _ = UbuntuServer.GetServerState();
                 _ = DebianServer.GetServerState();
             });
-            
         }
 
-        private void RebootServer(Server server)
+        private void RebootServer(Server server) // Virker kun i debug mode????
         {
             using (var stream = server.client.CreateShellStream("tty1", 0, 0, 0, 0, 1024))
             {
@@ -99,7 +98,6 @@ namespace ServerOpsaetning.ViewModel
                 await Task.Factory.StartNew(() => DebianServer.GetServerState());
                 DebianServer.IsServerOn = DebianServer.client.IsConnected;
             }
-
         }
 
         private void EditInfo()
