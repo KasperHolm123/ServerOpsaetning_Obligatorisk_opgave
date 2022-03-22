@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ServerOpsaetning"
         mc:Ignorable="d"
         Title="Controlpanel" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="mainGrid">
         <!-- Kaspers server template -->
         <Rectangle HorizontalAlignment="Left" Height="110" Margin="120,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Fill="#FFC9C9C9" StrokeThickness="0"/>
         <Label Content="CentOS - Server" HorizontalAlignment="Left" Margin="176,80,0,0" VerticalAlignment="Top"/>
@@ -262,6 +262,5 @@
             </Button.Resources>
         </Button>
         <!-- Jonas' server -->
-
     </Grid>
 </Window>
