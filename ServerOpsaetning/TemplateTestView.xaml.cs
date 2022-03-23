@@ -20,11 +20,14 @@ namespace ServerOpsaetning
     /// </summary>
     public partial class TemplateTestView : Window
     {
+        TempClass temp;
         public TemplateTestView()
         {
             InitializeComponent();
-            mainWrapPanel.Children.Add(ServerTemplate.CreateTemplate());
-            mainWrapPanel.Children.Add(ServerTemplate.CreateTemplate());
+            temp = new TempClass((p) =>
+            {
+                mainWrapPanel.Children.Add(p.CreateTemplate());
+            });
         }
     }
 }

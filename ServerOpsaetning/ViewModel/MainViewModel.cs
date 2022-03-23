@@ -28,7 +28,7 @@ namespace ServerOpsaetning.ViewModel
         private Server _ubuntuServer;
         private Server _debianServer;
         private Server _customServer;
-        
+
         public RelayCommand MoreInfoCmd { get; set; }
         public RelayCommand EditCmd { get; set; }
         public RelayCommand RebootServerCmd { get; set; }

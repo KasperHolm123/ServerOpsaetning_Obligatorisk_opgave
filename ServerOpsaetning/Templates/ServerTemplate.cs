@@ -10,97 +10,154 @@ using System.Windows.Shapes;
 
 namespace ServerOpsaetning.Templates
 {
-    public static class ServerTemplate
+    public delegate void ServerTemplateHandler(ServerTemplate template);
+
+    public class TempClass
     {
-        public static UIElement CreateTemplate()
+        public event ServerTemplateHandler TemplateHandler;
+
+        ServerTemplate tempTemplate = new ServerTemplate("0", "temp");
+        public TempClass(ServerTemplateHandler sTemplate)
         {
-            Grid g = new Grid();
-            // Background
+            TemplateHandler += sTemplate;
+            if (TemplateHandler != null)
+                TemplateHandler(tempTemplate);
+        }
+    }
+
+    public class ServerTemplate
+    {
+        
+        public string IP { get; set; }
+        public string Name { get; set; }
+        
+        public ServerTemplate(string IP, string name)
+        {
+            this.IP = IP;
+            Name = name;
+        }
+
+        public UIElement CreateTemplate()
+        {
+            // Border style
+            Style borderStyle = new Style()
+            {
+                TargetType = typeof(Border),
+                Setters = { new Setter { Property = Border.CornerRadiusProperty, Value = new CornerRadius(5) } }
+            };
+            
+            // Background colorscheme
             Color bg = (Color)ColorConverter.ConvertFromString("#FFC9C9C9");
             SolidColorBrush bgColor = new SolidColorBrush(bg);
-            Rectangle backGroundRect = new Rectangle()
+
+            Grid g = new Grid()
             {
-                Margin = new System.Windows.Thickness()
+                Background = bgColor,
+                Margin = new Thickness()
                 {
-                    Top = 20,
+                    Top = 10,
                     Bottom = 0,
-                    Left = 30,
-                    Right = 10
+                    Left = 10,
+                    Right = 20
                 },
+                //Style // Rounded corners
                 Width = 200,
-                Height = 110,
-                Fill = bgColor
+                Height = 110
             };
 
             Label nameLabel = new Label()
             {
-                Content = "Kasper - Server",
+                Content = Name,
+                VerticalAlignment = VerticalAlignment.Top,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness
                 {
-                    Top = 20,
+                    Top = 0,
                     Bottom = 0,
-                    Left = 60,
+                    Left = 0,
                     Right = 0
                 }
             };
+            g.Children.Add(nameLabel);
 
             Label statusLabel = new Label()
             {
                 Content = "Status:",
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 Margin = new Thickness
                 {
-                    Top = 45,
+                    Top = -40,
                     Bottom = 0,
-                    Left = 40,
+                    Left = 0,
                     Right = 0
                 }
             };
+            g.Children.Add(statusLabel);
 
             Label ipLabel = new Label()
             {
                 Content = "IP:",
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 Margin = new Thickness
                 {
-                    Top = 71,
+                    Top = 10,
                     Bottom = 0,
-                    Left = 40,
+                    Left = 0,
                     Right = 0
                 }
             };
+            g.Children.Add(ipLabel);
 
             SolidColorBrush ellipseOffColor = new SolidColorBrush(Colors.Gray);
             Ellipse connectionEllipse = new Ellipse()
             {
-                Fill = ellipseOffColor,
-                Height = 16,
-                Width = 16,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness
                 {
-                    Top = 0,
-                    Bottom = 10,
-                    Left = 170,
-                    Right = 0
-                }
+                    Top = -35,
+                    Bottom = 0,
+                    Left = 0,
+                    Right = 10
+                },
+                Height = 16,
+                Width = 16,
+                Fill = ellipseOffColor,
             };
+            g.Children.Add(connectionEllipse);
 
             Label serverIPLabel = new Label()
             {
-                Content = "0",
+                Content = IP,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness
                 {
-                    Top = 70,
-                    Bottom = 0,
-                    Left = 200,
+                    Top = 0,
+                    Bottom = 35,
+                    Left = 0,
+                    Right = 5
+                }
+            };
+            g.Children.Add(serverIPLabel);
+
+            Button removeButton = new Button()
+            {
+                Content = "Remove",
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Margin = new Thickness
+                {
+                    Top = 0,
+                    Bottom = 5,
+                    Left = 5,
                     Right = 0
                 }
             };
-
-            g.Children.Add(backGroundRect);
-            g.Children.Add(nameLabel);
-            g.Children.Add(statusLabel);
-            g.Children.Add(ipLabel);
-            g.Children.Add(connectionEllipse);
-            g.Children.Add(serverIPLabel);
+            removeButton.Resources.Add(borderStyle.TargetType, borderStyle);
+            g.Children.Add(removeButton);
 
             return g;
         }
